@@ -1,0 +1,8 @@
+- name: Create virtual network interface card
+  azure_rm_networkinterface:
+    resource_group: '{{ resource_group.name }}'
+    name: '{{ network_interface.name }}'
+    virtual_network: '{{ virtual_network.name }}'
+    subnet: '{{ subnet.name }}'
+    public_ip_name: '{{ public_IP.name }}'
+    security_group: '{{ security_group.name }}'

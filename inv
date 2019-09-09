@@ -1,0 +1,6 @@
+[myVM]
+52.170.36.110 
+
+[myVM:vars]
+ansible_user=bz
+ansible_ssh_key

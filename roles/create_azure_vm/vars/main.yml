@@ -1,0 +1,82 @@
+# Variables
+
+resource_group:
+    name: myResourceGroup
+    location: eastus
+
+virtual_network:
+    name: myVnet
+    address_prefixes: "10.0.0.0/16"
+
+subnet:
+    name: mySubnet
+    address_prefix: "10.0.1.0/24"
+
+public_IP:
+    name: myPublicIP
+
+ssh_allow:
+    name: SSH
+    protocol: Tcp
+    destination_port_range: 22
+    access: Allow
+    priority: 1001
+    direction: Inbound
+
+icmp_allow:
+    name: ping
+    protocol: "*"
+    access: Allow
+    priority: 4095
+    direction: Inbound
+
+http_allow:
+    name: HTTP
+    protocol: Tcp
+    destination_port_range: 80
+    access: Allow
+    priority: 1101
+    direction: Inbound
+
+https_allow:
+    name: HTTPS
+    protocol: Tcp
+    destination_port_range: 443
+    access: Allow
+    priority: 1201
+    direction: Inbound
+
+custom1_allow:
+    name: Custom1
+    protocol: Tcp
+    destination_port_range: 5000
+    access: Allow
+    priority: 1301
+    direction: Inbound
+
+custom2_allow:
+    name: Custom2
+    protocol: Tcp
+    destination_port_range: 8000
+    access: Allow
+    priority: 1401
+    direction: Inbound
+
+security_group:
+    name: myNetworkSecurityGroup
+    rules:
+      - '{{ ssh_allow }}'
+      - '{{ icmp_allow }}'
+      - '{{ http_allow }}'
+      - '{{ https_allow }}'
+      - '{{ custom1_allow }}'
+      - '{{ custom2_allow }}'
+
+network_interface:
+    name: myNIC
+
+
+admin_username: bz
+
+virtual_machine:
+    name: myVM

@@ -1,0 +1,5 @@
+- name: Create virtual network
+  azure_rm_virtualnetwork:
+    resource_group: '{{ resource_group.name }}'
+    name: '{{ virtual_network.name }}'
+    address_prefixes: '{{ virtual_network.address_prefixes }}'

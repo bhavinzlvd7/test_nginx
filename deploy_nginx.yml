@@ -1,0 +1,6 @@
+- name: Deploy NGINX
+  hosts: '{{ vm_name }}'
+  become: true
+  remote_user: bz
+  roles:
+    - nginxinc.nginx

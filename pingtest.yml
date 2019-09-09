@@ -1,0 +1,11 @@
+-   name: Test connectivity to target servers
+    hosts: all
+    tasks:
+      - name: ping
+        ping:
+
+      - name: check date
+        command: date
+        register: out
+      - debug: msg="{{ out.stdout }}"
+      - debug: msg="{{ out.stderr }}"
