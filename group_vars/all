@@ -10,11 +10,3 @@ mysql:
     username: "{{ admin_username }}"
     password: Abcpasswordxyz12!
     port: 3306
-
-
-flask_mysql_app_config:
-    MYSQL_DATABASE_USER: "{{ mysql.username }}@{{ mysql.server_name }}"
-    MYSQL_DATABASE_PASSWORD: "{{ mysql.password }}"
-    MYSQL_DATABASE_DB: "{{ mysql.db_name }}"
-    MYSQL_DATABASE_HOST: "{{ mysql.server_name }}.mysql.database.azure.com"
-    MYSQL_DATABASE_PORT: "{{ mysql.port }}"

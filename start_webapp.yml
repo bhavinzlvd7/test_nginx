@@ -21,17 +21,19 @@
     -   name: pip install -r requirements.txt
         command: pip install -r flask_app_with_mysql/requirements.txt
 
-    -   name: Ansible Jinja2 Example
+    -   name: Copy flask mysql app config file
         template:
             src: 'templates/flask_sql_config.j2'
-            dest: 
+            dest: '/home/bz/flask_app_with_mysql/mysql_config.py'
             mode: 0777
 
 #    -   name: export FLASK_APP application.py
 #        shell: export "FLASK_APP=flask-hello-world/application.py"
 
-    -   name: export FLASK_APP application.py and Start flask run -h 0.0.0.0
-        shell: export "FLASK_APP=flask_app_with_mysql/app.py"; nohup flask run -h 0.0.0.0 &
+    -   name: export FLASK_APP app.py and Start flask run -h 0.0.0.0
+        shell: export "FLASK_APP=app.py"; nohup flask run -h 0.0.0.0 &
+        args:
+            chdir: flask_app_with_mysql/
         register: out
     -   debug: msg="{{ out.stdout }}"
     -   debug: msg="{{ out.stderr }}"
