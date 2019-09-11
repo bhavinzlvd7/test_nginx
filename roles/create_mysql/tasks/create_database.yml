@@ -1,0 +1,7 @@
+-   name: Create instance of MySQL Database
+    azure_rm_mysqldatabase:
+        resource_group: "{{ resource_group.name }}"
+        server_name: "{{ mysql.server_name }}"
+        name: "{{ mysql.db_name }}"
+    register: out
+-   debug: msg="{{ out }}"

@@ -1,0 +1,4 @@
+- import_tasks: create_server.yml
+- import_tasks: add_firewall_rules.yml
+- import_tasks: create_database.yml
+- import_tasks: list_database.yml

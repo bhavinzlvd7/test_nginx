@@ -1,0 +1,16 @@
+-   name: Create MySQL Server
+    azure_rm_mysqlserver:
+        resource_group: "{{ resource_group.name }}"
+        name: "{{ mysql.server_name }}"
+        sku:
+          name: GP_Gen5_2
+          tier: GeneralPurpose
+        location: "{{ resource_group.location }}"
+        version: 5.6
+#        enforce_ssl: True
+        enforce_ssl: False
+        admin_username: "{{ mysql.username }}"
+        admin_password: "{{ mysql.password }}"
+        storage_mb: 5120
+    register: out
+-   debug: msg="{{ out }}"

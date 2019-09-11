@@ -1,5 +1,5 @@
-- name: Create Azure VM
-  hosts: localhost
-  connection: local
-  roles:
-    - create_azure_vm
+-   name: Create Azure VM
+    hosts: localhost
+    connection: local
+    roles:
+        -   create_azure_vm
