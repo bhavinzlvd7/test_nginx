@@ -7,3 +7,11 @@
 - name: Dump public IP for VM which will be created
   debug:
     msg: "The public IP is {{ output_ip_address.state.ip_address }}."
+- name: Dump public IP for VM which will be created
+  replace:
+    path: inv
+    after: 'myVM'
+    before: 'myVM:vars'
+    regexp: '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
+    replace: '{{ output_ip_address.state.ip_address }}'
+    backup: yes

@@ -1,9 +1,5 @@
 # Variables
 
-resource_group:
-    name: myResourceGroup
-    location: eastus
-
 virtual_network:
     name: myVnet
     address_prefixes: "10.0.0.0/16"
@@ -74,9 +70,6 @@ security_group:
 
 network_interface:
     name: myNIC
-
-
-admin_username: bz
 
 virtual_machine:
     name: myVM

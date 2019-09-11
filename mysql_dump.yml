@@ -1,0 +1,23 @@
+-   name: mysql dump
+    hosts: '{{ vm_name }}'
+    become: yes
+    become_user: root
+    vars:
+        login_host: "{{ mysql.server_name }}.mysql.database.azure.com"
+        login_port: "{{ mysql.port }}"
+        login_user: "{{ mysql.username }}@{{ mysql.server_name }}"
+        login_password: "{{ mysql.password }}"
+    tasks:
+        -   name: Copy database dump file
+            copy:
+                src: "{{ dump_file }}"
+                dest: /tmp
+        -   name: Restore database
+            mysql_db:
+                name: my_db
+                state: import
+                target: "/tmp/{{ dump_file }}"
+                login_host: '{{ login_host }}'
+                login_port: '{{ login_port }}'
+                login_user: '{{ login_user }}'
+                login_password: '{{ login_password }}'

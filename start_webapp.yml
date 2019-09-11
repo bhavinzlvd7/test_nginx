@@ -1,62 +1,43 @@
 -   name: Start python webapp
     hosts: '{{ vm_name }}'
     become: yes
-    become_method: sudo
-    vars:
-        app_name: myproject
-        webapps_dir: /home/bz
-        virtualenv_root: /home/bz/myproject/myprojectenv/versions/latest_v3
+    become_user: root
+
     tasks:
     -   name: ensure required packages installed
         package: name={{item}} state=latest update_cache=yes cache_valid_time=3600
-#        sudo: yes
-        become: yes
-        become_user: root
         with_items:
+        - python
         - python-pip
-        - python-dev
+        - python-mysqldb
+        - mysql-client
+#        - python-dev
         - nginx
-        - virtualenv
+        - git
 
-    -   name: ansible create directory example
-        file:
-            path: '{{ app_name }}'
-            state: directory
-            mode: '0755'
-    -   name: ls check
-        command: ls -l
+    -   name: git clone
+        command: git clone https://github.com/bhavinzlvd7/flask_app_with_mysql.git creates=flask_app_with_mysql
+
+    -   name: pip install -r requirements.txt
+        command: pip install -r flask_app_with_mysql/requirements.txt
+
+    -   name: Ansible Jinja2 Example
+        template:
+            src: 'templates/flask_sql_config.j2'
+            dest: 
+            mode: 0777
+
+#    -   name: export FLASK_APP application.py
+#        shell: export "FLASK_APP=flask-hello-world/application.py"
+
+    -   name: export FLASK_APP application.py and Start flask run -h 0.0.0.0
+        shell: export "FLASK_APP=flask_app_with_mysql/app.py"; nohup flask run -h 0.0.0.0 &
         register: out
     -   debug: msg="{{ out.stdout }}"
     -   debug: msg="{{ out.stderr }}"
 
-    -   name: copy myproject.py
-        copy: src=files/myproject.py dest={{ app_name }}/myproject.py
-#        sudo: yes
-    -   name: copy wsgi.py
-        copy: src=files/wsgi.py dest={{ app_name }}/wsgi.py
-
-    -   name: create a virtual environment to store our Flask project’s Python requirements
-        command: virtualenv myprojectenv chdir='{{ app_name }}'
-
-#    -   pip: requirements={{webapps_dir}}/{{app_name}}/requirements.txt virtualenv=latest_v3 executable={{virtualenv_root}}/bin/pip3
-#    - shell: "{{virtualenv_root}}/bin/python3 manage.py deploy"
-#      args:
-#        chdir: "{{webapps_dir}}/{{app_name}}"
-
-
-    -   name: pip install -r requirements.txt
-        command: pip3 install -r flask-hello-world/requirements.txt
-
-    -   name: export FLASK_APP application.py
-        shell: export "FLASK_APP=flask-hello-world/application.py"
-    -   name: Start flask run -h 0.0.0.0
-        service:
-            name: "flask run"
-            state: started
-            args: "-h 0.0.0.0"
-
-    -   name: ls check
-        command: ls -l chdir='{{ app_name }}'
+    -   name: Check flask is running
+        shell: ps -afx | grep flask | grep -v grep
         register: out
     -   debug: msg="{{ out.stdout }}"
     -   debug: msg="{{ out.stderr }}"
