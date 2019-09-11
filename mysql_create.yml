@@ -34,13 +34,16 @@
       register: out
     - debug: msg="{{ out }}"
 
+#    - debug: msg="{{ hostvars }}"
+#    - debug: msg="{{ groups }}"
+
     - name: Create (or update) MySQL firewall rule
       azure_rm_mysqlfirewallrule:
         resource_group: "{{ resource_group.name }}"
         server_name: "{{ mysql.server_name }}"
         name: rule1
-        start_ip_address: 40.121.36.77
-        end_ip_address: 40.121.36.77
+        start_ip_address: "{{ groups['myVM'][0] }}"
+        end_ip_address: "{{ groups['myVM'][0] }}"
 
     - name: Get instance of MySQL Database
       azure_rm_mysqldatabase_facts:
