@@ -27,9 +27,6 @@
             dest: '/home/bz/flask_app_with_mysql/mysql_config.py'
             mode: 0777
 
-#    -   name: export FLASK_APP application.py
-#        shell: export "FLASK_APP=flask-hello-world/application.py"
-
     -   name: export FLASK_APP app.py and Start flask run -h 0.0.0.0
         shell: export "FLASK_APP=app.py"; nohup flask run -h 0.0.0.0 &
         args:
