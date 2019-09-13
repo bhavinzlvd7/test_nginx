@@ -41,7 +41,7 @@ steps:
 - task: ms-vscs-rm.vss-services-ansible.ansible-task.Ansible@0
   displayName: 'Run playbook to create VM'
   inputs:
-    playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/test_nginx/create_azure_vm.yml'
+    playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/create_azure_vm.yml'
 
 - task: ms-vscs-rm.vss-services-ansible.ansible-task.Ansible@0
   displayName: 'Run playbook to run webapp'
