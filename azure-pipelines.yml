@@ -37,4 +37,7 @@ steps:
   displayName: 'Version check'
 
 - script: ansible-playbook create_azure_vm.yml
-  displayName: 'run ansible-playbook'
+  displayName: 'run ansible-playbook to create VMs'
+
+- script: ansible-playbook run_webapp.yml -i inv -e "vm_name=myVM dump_file=mysql_dump"
+  displayName: 'run ansible-playbook to run webapp'
