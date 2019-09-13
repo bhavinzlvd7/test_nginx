@@ -21,13 +21,23 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
     python -V
-  displayName: 'Run a multi-line script'
+  displayName: 'Run a multi-line script 1'
 
-- script: python -m pip install
-  displayName: 'Install tools'
+- script: |
+    python -m pip install
+    pip -V
+  displayName: 'Install pip'
 
-- script: pip install setuptools
+- script: |
+    pip install setuptools
+    pip show setuptools
   displayName: 'install setuptools'
+
+- script: |
+    python -V
+    pip -V
+    pip show setuptools
+  displayName: 'Version check'
 
 - script: ansible-playbook create_azure_vm.yml
   displayName: 'run ansible-playbook'
