@@ -24,13 +24,9 @@ steps:
 
 - script: |
     echo OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    python -m pip install
+    python -m pip install setuptools wheel
     echo OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     pip install ansible[azure]
-    echo OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    pip install setuptools
-    echo OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    pip install packaging
     echo OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
   displayName: 'Install tool'
 
@@ -39,6 +35,3 @@ steps:
     pip -V
     ansible --version
   displayName: 'Version check'
-
-- script: ansible-playbook create_azure_vm.yml
-  displayName: 'run ansible-playbook'
