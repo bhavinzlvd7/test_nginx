@@ -23,17 +23,11 @@ steps:
     python -V
   displayName: 'Run a multi-line script'
 
-- script: python -m pip install --upgrade pip setuptools wheel
+- script: python -m pip install
   displayName: 'Install tools'
-
-- script: pip install --upgrade pip
-  displayName: 'upgrade pip'
 
 - script: pip install setuptools
   displayName: 'install setuptools'
-
-- script: pip install --upgrade setuptools
-  displayName: 'upgrade setuptools'
 
 - script: ansible-playbook create_azure_vm.yml
   displayName: 'run ansible-playbook'
