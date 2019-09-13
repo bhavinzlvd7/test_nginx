@@ -20,6 +20,7 @@ steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
+    python -V
   displayName: 'Run a multi-line script'
 
 - script: |
