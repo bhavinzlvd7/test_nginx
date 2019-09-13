@@ -23,9 +23,15 @@ steps:
   displayName: 'Run a multi-line script 1'
 
 - script: |
+    echo OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     python -m pip install
+    echo OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    pip install ansible[azure]
+    echo OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     pip install setuptools
+    echo OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     pip install packaging
+    echo OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
   displayName: 'Install tool'
 
 - script: |
