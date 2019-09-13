@@ -35,3 +35,6 @@ steps:
     pip -V
     ansible --version
   displayName: 'Version check'
+
+- script: ansible-playbook create_azure_vm.yml
+  displayName: 'run ansible-playbook'
