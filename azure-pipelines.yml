@@ -51,6 +51,7 @@ steps:
   displayName: 'Run playbook to create VM'
   inputs:
     playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/create_azure_vm.yml'
+    args: ' -vvv'
 
 - task: ms-vscs-rm.vss-services-ansible.ansible-task.Ansible@0
   displayName: 'Run playbook to run webapp'
@@ -58,5 +59,6 @@ steps:
     playbookPathOnAgentMachine: '$(System.DefaultWorkingDirectory)/run_webapp.yml'
     inventoriesAgentMachine: file
     inventoryFileOnAgentMachine: '$(System.DefaultWorkingDirectory)/inv'
-    args: ' -e "vm_name=myVM dump_file=mysql_dump"'
+    args: ' -vvv -e "vm_name=myVM dump_file=mysql_dump"'
   continueOnError: true
+  condition: succeededOrFailed()
