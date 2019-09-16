@@ -38,6 +38,15 @@ steps:
     ls -l $(System.DefaultWorkingDirectory)
   displayName: 'Version check'
 
+- script: |
+    echo $(MyServicePrincipal.AZURE_SUBSCRIPTION_ID)
+    export AZURE_SUBSCRIPTION_ID=$(MyServicePrincipal.AZURE_SUBSCRIPTION_ID)
+    export AZURE_CLIENT_ID=$(MyServicePrincipal.AZURE_CLIENT_ID)
+    export AZURE_SECRET=$(MyServicePrincipal.AZURE_SECRET)
+    export AZURE_TENANT=$(MyServicePrincipal.AZURE_TENANT)
+    echo $(AZURE_SUBSCRIPTION_ID)
+  displayName: 'Service Principal login'
+
 - task: ms-vscs-rm.vss-services-ansible.ansible-task.Ansible@0
   displayName: 'Run playbook to create VM'
   inputs:
