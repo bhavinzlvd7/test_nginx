@@ -1,5 +1,5 @@
 - name: generate ssh key if not exist
-  command: ssh-keygen -N '{{ resource_group.name }}' -f ./ssh_key
+  command: ssh-keygen -N '{{ resource_group.name }}' -f ./ssh_key creates=./ssh_key.pub
   
 - name: Create VM
   azure_rm_virtualmachine:
